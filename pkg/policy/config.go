@@ -6,6 +6,7 @@ package policy
 import (
 	"time"
 
+	ipcacheTypes "github.com/cilium/cilium/pkg/ipcache/types"
 	"github.com/cilium/cilium/pkg/labels"
 	"github.com/cilium/cilium/pkg/lock"
 	"github.com/cilium/cilium/pkg/logging"
@@ -54,10 +55,16 @@ type AddOptions struct {
 	// The time the policy initially began to be processed in Cilium, such as when the
 	// policy was received from the API server.
 	ProcessingStartTime time.Time
+
+	// Resource indicates the source of this information
+	Resource ipcacheTypes.ResourceID
 }
 
 // DeleteOptions are options which can be passed to PolicyAdd
 type DeleteOptions struct {
 	// The source of this policy, one of api, fqdn or k8s
 	Source source.Source
+
+	// Resource indicates the source of this information
+	Resource ipcacheTypes.ResourceID
 }
